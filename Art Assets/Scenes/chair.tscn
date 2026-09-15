@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4t4fhm60iiih"]
+
+[ext_resource type="PackedScene" uid="uid://djse8tsdqy2i1" path="res://Art Assets/Imports/chair.fbx" id="1_ikb3m"]
+
+[node name="chair" instance=ExtResource("1_ikb3m")]

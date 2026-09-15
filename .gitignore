@@ -1,0 +1,9 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+# All the executables
+Fire and Ash.exe
+Fire and Ash.console.exe
+Fire and Ash.x86_64
+Fire and Ash.sh
+Fire and Ash.zip

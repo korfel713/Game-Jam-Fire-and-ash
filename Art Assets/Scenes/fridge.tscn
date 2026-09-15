@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://psl03t2vyxo1"]
+
+[ext_resource type="PackedScene" uid="uid://bo2lx6yebljrc" path="res://Art Assets/Imports/fridge.fbx" id="1_68gco"]
+
+[node name="fridge" instance=ExtResource("1_68gco")]
+transform = Transform3D(-1.5298985e-08, 0, -0.35, 0, 0.35, 0, 0.35, 0, -1.5298985e-08, 0, 0, 0)

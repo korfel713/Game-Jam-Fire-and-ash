@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr4r2naq7765c"]
+
+[ext_resource type="PackedScene" uid="uid://dw3uiu7hdjvca" path="res://Art Assets/Imports/bed.fbx" id="1_no6vd"]
+
+[node name="bed" instance=ExtResource("1_no6vd")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)

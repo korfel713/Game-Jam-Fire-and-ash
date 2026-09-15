@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://baoctv4oo2tvy"]
+
+[ext_resource type="PackedScene" uid="uid://ck4wq8r448qhk" path="res://Art Assets/Imports/ACUnit.fbx" id="1_u1ec8"]
+
+[node name="AC_Unit" instance=ExtResource("1_u1ec8")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)

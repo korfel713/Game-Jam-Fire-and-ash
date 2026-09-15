@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs7mg7jae0vg5"]
+
+[ext_resource type="PackedScene" uid="uid://bmg7kli8naw35" path="res://Art Assets/Imports/Ash.fbx" id="1_w46s7"]
+
+[node name="AshPile" instance=ExtResource("1_w46s7")]
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(35, 0, 0, 0, -1.5298986e-06, 35, 0, -35, -1.5298986e-06, 0, 0, 0)
