@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://02ghhaq7sg8r"]
+
+[ext_resource type="Script" uid="uid://lml4grxlof7w" path="res://Scripts/Player.gd" id="1_v0iea"]
+[ext_resource type="PackedScene" uid="uid://c3mbugkp7dr6y" path="res://Art Assets/Scenes/player.tscn" id="2_cvnsp"]
+[ext_resource type="AudioStream" uid="uid://dvee4mhj2t1y2" path="res://Art Assets/Sound Effects/freesound_community-fire-101911.mp3" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://duwkgmltah3ts" path="res://Art Assets/Sound Effects/fire_ignite.mp3" id="4_vgqql"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cvnsp"]
+size = Vector3(1.25, 1, 1.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6t5aa"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("fire_radius", "burning_sound")]
+collision_mask = 57
+script = ExtResource("1_v0iea")
+fire_radius = NodePath("FireRadius")
+burning_sound = NodePath("BurningSound")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.375, 0)
+shape = SubResource("BoxShape3D_cvnsp")
+
+[node name="FireRadius" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375, 0)
+collision_mask = 10
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="FireRadius"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.75, 0, 0)
+shape = SubResource("BoxShape3D_6t5aa")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="FireRadius"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.75, 0, 0)
+shape = SubResource("BoxShape3D_6t5aa")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="FireRadius"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0.75)
+shape = SubResource("BoxShape3D_6t5aa")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="FireRadius"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+shape = SubResource("BoxShape3D_6t5aa")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="FireRadius"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, -0.75)
+shape = SubResource("BoxShape3D_6t5aa")
+
+[node name="player" parent="." instance=ExtResource("2_cvnsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3231383, 0)
+
+[node name="BurningSound" type="AudioStreamPlayer3D" parent="."]
+process_mode = 3
+stream = ExtResource("3_6t5aa")
+bus = &"SFX"
+
+[node name="SpreadSound" type="AudioStreamPlayer3D" parent="."]
+process_mode = 3
+stream = ExtResource("4_vgqql")
+
+[node name="FoamDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37451798, 0)
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FoamDetector"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+shape = SubResource("BoxShape3D_cvnsp")
+
+[connection signal="body_entered" from="FireRadius" to="." method="hanble_body_entered"]
+[connection signal="body_entered" from="FoamDetector" to="." method="hanble_body_entered"]

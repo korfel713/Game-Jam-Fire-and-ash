@@ -1,0 +1,148 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4cj8c0tbvyx8"]
+
+[ext_resource type="Script" uid="uid://cr0gx7m6sitan" path="res://Scripts/PauseMenu.gd" id="1_emv3i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2c35"]
+
+[sub_resource type="FontFile" id="FontFile_y2c35"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/60/0/ascent = 0.0
+cache/0/60/0/descent = 0.0
+cache/0/60/0/underline_position = 0.0
+cache/0/60/0/underline_thickness = 0.0
+cache/0/60/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wy5rh"]
+bg_color = Color(0.7411765, 0.7411765, 0.7411765, 0.49803922)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k0w1u"]
+bg_color = Color(0.8474744, 0.84747446, 0.8474745, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1och7"]
+bg_color = Color(0.5649613, 0.5649618, 0.5649615, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bpi0q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hs43q"]
+bg_color = Color(0.7411765, 0.7411765, 0.7411765, 0.49803922)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[node name="PauseMenu" type="Panel"]
+anchors_preset = -1
+anchor_left = 0.18
+anchor_top = 0.21900001
+anchor_right = 0.81100005
+anchor_bottom = 0.80200005
+offset_left = -0.36001587
+offset_top = 0.08799744
+offset_right = -0.2720337
+offset_bottom = 0.30395508
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y2c35")
+script = ExtResource("1_emv3i")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.17600001
+anchor_top = 0.053000003
+anchor_right = 0.82400006
+anchor_bottom = 0.48900002
+offset_left = -0.16801453
+offset_top = 19.576
+offset_right = 0.16796875
+offset_bottom = -19.408005
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontFile_y2c35")
+theme_override_font_sizes/font_size = 60
+text = "Are you sure you want to quit?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Yes" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.17500001
+anchor_top = 0.569
+anchor_right = 0.47500002
+anchor_bottom = 0.71400005
+offset_left = -0.2250061
+offset_top = -0.08200073
+offset_right = -0.3250122
+offset_bottom = 0.10797119
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_focus_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_wy5rh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k0w1u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1och7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bpi0q")
+text = "Yes"
+
+[node name="No" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.56100005
+anchor_top = 0.569
+anchor_right = 0.86100006
+anchor_bottom = 0.71400005
+offset_left = 0.1529541
+offset_top = -0.08200073
+offset_right = 0.052978516
+offset_bottom = 0.10797119
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_focus_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_hs43q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k0w1u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1och7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bpi0q")
+text = "No"
+
+[connection signal="pressed" from="Yes" to="." method="yes"]
+[connection signal="pressed" from="No" to="." method="no"]
