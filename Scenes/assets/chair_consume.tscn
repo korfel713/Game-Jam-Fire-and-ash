@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6mims7h3jyww"]
+
+[ext_resource type="PackedScene" uid="uid://b4t4fhm60iiih" path="res://Art Assets/Scenes/chair.tscn" id="1_5opuk"]
+[ext_resource type="Script" uid="uid://b2ihcwkr0chgf" path="res://Scripts/Consumable.gd" id="1_qmpca"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5opuk"]
+size = Vector3(0.5767822, 1.1506882, 0.69467163)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmpca"]
+size = Vector3(0.7930908, 1.2259369, 0.9397278)
+
+[node name="Chair" type="CharacterBody3D" groups=["Flammable"]]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_qmpca")
+fuel = 2.0
+fuel_con_rate = 0.5
+fuel_con_tick = 1.0
+height = 0.5
+
+[node name="chair" parent="." instance=ExtResource("1_5opuk")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.20737225, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1035156e-05, 0.5755564, 1.5258789e-05)
+shape = SubResource("BoxShape3D_5opuk")
+
+[node name="FireDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85559046, 0)
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010681152, -0.24234772, 0.0058135986)
+shape = SubResource("BoxShape3D_qmpca")
+
+[connection signal="body_entered" from="FireDetector" to="." method="touching_Fire"]

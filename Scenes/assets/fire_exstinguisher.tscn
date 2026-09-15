@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://bsvn4u64d5hl7"]
+
+[ext_resource type="PackedScene" uid="uid://cirwnpuyw1c7m" path="res://Art Assets/Scenes/fire_extinguisher.tscn" id="1_3ghec"]
+[ext_resource type="Script" uid="uid://bc6xomogmdprg" path="res://Scripts/FireExstinguisher.gd" id="1_h3pvg"]
+[ext_resource type="AudioStream" uid="uid://brp8m8xw4311c" path="res://Art Assets/Sound Effects/explosion_sound.mp3" id="3_ek1gr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ghec"]
+size = Vector3(0.8857727, 1.5990722, 0.57373047)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sgkls"]
+size = Vector3(0.2727539, 1.1442719, 0.21430176)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_h3pvg"]
+height = 1.5969849
+radius = 0.4189453
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ek1gr"]
+height = 2.6000977
+radius = 2.2514648
+
+[node name="FireExstinguisher" type="CharacterBody3D" node_paths=PackedStringArray("explosion_sound", "mesh")]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_h3pvg")
+explosion_sound = NodePath("AudioStreamPlayer3D")
+mesh = NodePath("fireExtinguisher")
+fuel = 3.0
+fuel_con_rate = 0.5
+fuel_con_tick = 2.0
+height = 1.2
+
+[node name="fireExtinguisher" parent="." instance=ExtResource("1_3ghec")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.24070868, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09025574, 0.79579055, -0.0041503906)
+shape = SubResource("BoxShape3D_3ghec")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40938133, 0.9411254, -0.00083886087)
+shape = SubResource("BoxShape3D_sgkls")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5866313, 0)
+stream = ExtResource("3_ek1gr")
+
+[node name="FireDetector" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8030324, 0)
+shape = SubResource("CylinderShape3D_h3pvg")
+
+[node name="ExplosionRadius" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionRadius"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2980957, 0)
+shape = SubResource("CylinderShape3D_ek1gr")
+
+[connection signal="body_entered" from="FireDetector" to="." method="touching_Fire"]
+[connection signal="body_entered" from="ExplosionRadius" to="." method="exploder_radius"]

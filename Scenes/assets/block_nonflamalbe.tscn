@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cphjek6m8ylkc"]
+
+[ext_resource type="PackedScene" uid="uid://c01e6dgsobw23" path="res://Art Assets/Scenes/wood_block.tscn" id="2_lqcvg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8o1l4"]
+
+[node name="NonFlammabeBlock" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 5
+
+[node name="woodBlock" parent="." instance=ExtResource("2_lqcvg")]
+transform = Transform3D(0.5, 0, 0, 0, 0.48, 0, 0, 0, 0.5, 0, -0.26770595, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_8o1l4")

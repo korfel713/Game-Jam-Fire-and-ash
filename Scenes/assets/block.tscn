@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkgjw1pruis5v"]
+
+[ext_resource type="Script" uid="uid://cv6jpxc4yawbm" path="res://Scripts/Block.gd" id="1_ejx3s"]
+[ext_resource type="PackedScene" uid="uid://c01e6dgsobw23" path="res://Art Assets/Scenes/wood_block.tscn" id="2_jtww3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8o1l4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ejx3s"]
+
+[node name="Block" type="CharacterBody3D" groups=["Flammable"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_ejx3s")
+
+[node name="woodBlock" parent="." instance=ExtResource("2_jtww3")]
+transform = Transform3D(0.5, 0, 0, 0, 0.48, 0, 0, 0, 0.5, 0, -0.26770595, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_8o1l4")
+
+[node name="FireDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireDetector"]
+shape = SubResource("BoxShape3D_ejx3s")
+
+[connection signal="body_entered" from="FireDetector" to="." method="handle_body_entered"]
+[connection signal="body_exited" from="FireDetector" to="." method="handle_body_exited"]

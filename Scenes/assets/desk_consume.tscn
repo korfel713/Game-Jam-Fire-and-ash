@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://blt0trul5q4vx"]
+
+[ext_resource type="PackedScene" path="res://Art Assets/Scenes/desk.tscn" id="1_d6mw1"]
+[ext_resource type="Script" uid="uid://b2ihcwkr0chgf" path="res://Scripts/Consumable.gd" id="1_lcccx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nnosa"]
+size = Vector3(0.6654434, 1.1816406, 1.8791962)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d6mw1"]
+size = Vector3(1.6742706, 1.3239746, 2.4162369)
+
+[node name="Desk" type="CharacterBody3D" groups=["Flammable"]]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_lcccx")
+fuel = 3.5
+fuel_con_rate = 1.0
+fuel_con_tick = 2.0
+height = 0.95
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.023345947, 0.5908203, 0.002861023)
+shape = SubResource("BoxShape3D_nnosa")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09920883, 0.5, 0)
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17015839, 0.1619873, 0.0033226013)
+shape = SubResource("BoxShape3D_d6mw1")
+
+[node name="desk" parent="." instance=ExtResource("1_d6mw1")]
+transform = Transform3D(0.16701753, 0, 0, 0, 0.31331322, 0, 0, 0, 0.20085014, -0.09920883, 0.2791502, 0)
+
+[connection signal="body_entered" from="Area3D" to="." method="touching_Fire"]

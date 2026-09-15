@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckkteis22xg11"]
+
+[ext_resource type="Script" uid="uid://55hs4ucr6yil" path="res://Scripts/Exploder.gd" id="1_4b4ik"]
+[ext_resource type="PackedScene" path="res://Art Assets/Scenes/ac_unit.tscn" id="1_bo8sp"]
+[ext_resource type="AudioStream" uid="uid://brp8m8xw4311c" path="res://Art Assets/Sound Effects/explosion_sound.mp3" id="3_v3ofe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bo8sp"]
+size = Vector3(0.55533445, 1, 1.3989649)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v3ofe"]
+height = 1.4941406
+radius = 1.1889648
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v3ofe"]
+size = Vector3(0.7, 1.5554199, 1.6)
+
+[node name="AC-Unit" type="CharacterBody3D" node_paths=PackedStringArray("explosion_sound", "mesh") groups=["Flammable"]]
+collision_layer = 8
+collision_mask = 15
+script = ExtResource("1_4b4ik")
+explosion_sound = NodePath("AudioStreamPlayer3D")
+mesh = NodePath("AC_Unit")
+fuel = 4.0
+fuel_con_rate = 0.4
+fuel_con_tick = 1.0
+height = 0.6
+
+[node name="AC_Unit" parent="." instance=ExtResource("1_bo8sp")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.056752443, 0.35, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.023474097, 0.4, 0)
+shape = SubResource("BoxShape3D_bo8sp")
+
+[node name="ExplosionRadius" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+collision_layer = 8
+collision_mask = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionRadius"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3070964, 0.004207045)
+shape = SubResource("CylinderShape3D_v3ofe")
+
+[node name="FireDetector" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17507541, 0)
+shape = SubResource("BoxShape3D_v3ofe")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_v3ofe")
+
+[connection signal="body_entered" from="ExplosionRadius" to="." method="exploder_radius"]
+[connection signal="body_entered" from="FireDetector" to="." method="touching_Fire"]

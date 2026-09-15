@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxe10khd3hmly"]
+
+[ext_resource type="Script" uid="uid://55hs4ucr6yil" path="res://Scripts/Exploder.gd" id="1_myu2h"]
+[ext_resource type="AudioStream" uid="uid://brp8m8xw4311c" path="res://Art Assets/Sound Effects/explosion_sound.mp3" id="2_634tm"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g6srh"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g6srh"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_myu2h"]
+radius = 2.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_634tm"]
+radius = 0.7128906
+
+[node name="Exploder" type="CharacterBody3D" node_paths=PackedStringArray("explosion_sound", "mesh") groups=["Flammable"]]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_myu2h")
+explosion_sound = NodePath("AudioStreamPlayer3D")
+mesh = NodePath("MeshInstance3D")
+fuel = 5.0
+fuel_con_rate = 0.5
+fuel_con_tick = 2.0
+height = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_g6srh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_g6srh")
+
+[node name="ExplosionRadius" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionRadius"]
+shape = SubResource("CylinderShape3D_myu2h")
+
+[node name="FireDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireDetector"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.7344533, 0)
+shape = SubResource("CylinderShape3D_634tm")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+stream = ExtResource("2_634tm")
+
+[connection signal="body_entered" from="ExplosionRadius" to="." method="exploder_radius"]
+[connection signal="body_entered" from="FireDetector" to="." method="touching_Fire"]
