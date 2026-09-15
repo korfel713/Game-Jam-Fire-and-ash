@@ -1,7 +1,17 @@
-# Godot 4+ specific ignores
+# Godot generated files
 .godot/
+*.import
+
+# Temporary/editor files
+*.tmp
+.DS_Store
+.idea/
+.vscode/
+
+# Exported builds
 /android/
-# All the executables
+Fire and Ash.app/
+Fire and Ash.command
 Fire and Ash.exe
 Fire and Ash.console.exe
 Fire and Ash.x86_64
