@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://de332samgnmvl"]
+
+[ext_resource type="Script" uid="uid://c5rrignje5dtu" path="res://Scripts/Fireling.gd" id="1_oakfu"]
+[ext_resource type="PackedScene" uid="uid://rxs23mbuixwb" path="res://Art Assets/Scenes/firelings.tscn" id="2_atsjc"]
+[ext_resource type="AudioStream" uid="uid://dvee4mhj2t1y2" path="res://Art Assets/Sound Effects/freesound_community-fire-101911.mp3" id="3_8hltx"]
+[ext_resource type="AudioStream" uid="uid://duwkgmltah3ts" path="res://Art Assets/Sound Effects/fire_ignite.mp3" id="4_7df05"]
+[ext_resource type="AudioStream" uid="uid://cokkmgcqey3nc" path="res://Art Assets/Sound Effects/ash_sound.mp3" id="5_a0cyb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oakfu"]
+size = Vector3(1.1, 1, 1.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_atsjc"]
+
+[node name="Fireling" type="CharacterBody3D" node_paths=PackedStringArray("fire_radius", "burning_sound", "fire_spread_sound")]
+collision_layer = 4
+collision_mask = 10
+script = ExtResource("1_oakfu")
+fire_radius = NodePath("FireRadius")
+burning_sound = NodePath("BurningSound")
+fire_spread_sound = NodePath("SpreadSound")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.35, 0)
+shape = SubResource("BoxShape3D_oakfu")
+
+[node name="FireRadius" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+collision_layer = 4
+collision_mask = 10
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="FireRadius"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.7, 0, 0)
+shape = SubResource("BoxShape3D_atsjc")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="FireRadius"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 1.4, 0)
+shape = SubResource("BoxShape3D_atsjc")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="FireRadius"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.7, 0, 0)
+shape = SubResource("BoxShape3D_atsjc")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="FireRadius"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, -0.7)
+shape = SubResource("BoxShape3D_atsjc")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="FireRadius"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0.7)
+shape = SubResource("BoxShape3D_atsjc")
+
+[node name="firelings" parent="." instance=ExtResource("2_atsjc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21680143, 0)
+
+[node name="BurningSound" type="AudioStreamPlayer3D" parent="."]
+process_mode = 3
+stream = ExtResource("3_8hltx")
+attenuation_model = 3
+volume_db = -12.0
+max_db = 0.0
+bus = &"SFX"
+
+[node name="SpreadSound" type="AudioStreamPlayer3D" parent="."]
+process_mode = 3
+stream = ExtResource("4_7df05")
+attenuation_model = 3
+volume_db = -7.0
+bus = &"SFX"
+playback_type = 1
+
+[node name="AshSound" type="AudioStreamPlayer3D" parent="."]
+process_mode = 3
+stream = ExtResource("5_a0cyb")
+volume_db = -2.0
+
+[node name="FoamDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FoamDetector"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+shape = SubResource("BoxShape3D_oakfu")
+
+[connection signal="body_entered" from="FoamDetector" to="." method="hanble_body_entered"]

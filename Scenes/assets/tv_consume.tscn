@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4f1cwrnrkxch"]
+
+[ext_resource type="Script" uid="uid://b2ihcwkr0chgf" path="res://Scripts/Consumable.gd" id="1_csmvn"]
+[ext_resource type="PackedScene" path="res://Art Assets/Scenes/tv.tscn" id="2_csmvn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nnosa"]
+size = Vector3(0.8674501, 1.6723022, 1.879)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d6mw1"]
+size = Vector3(1.6742706, 1.611084, 2.4162369)
+
+[node name="TV" type="CharacterBody3D" groups=["Flammable"]]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_csmvn")
+fuel = 3.5
+fuel_con_rate = 1.0
+fuel_con_tick = 2.0
+height = 0.95
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0012491643, 0.76919556, 0.002861023)
+shape = SubResource("BoxShape3D_nnosa")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09920883, 0.5, 0)
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17015839, 0.305542, 0.0033226013)
+shape = SubResource("BoxShape3D_d6mw1")
+
+[node name="TV" parent="." instance=ExtResource("2_csmvn")]
+
+[connection signal="body_entered" from="Area3D" to="." method="touching_Fire"]

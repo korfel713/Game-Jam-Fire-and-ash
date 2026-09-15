@@ -1,0 +1,876 @@
+[gd_scene load_steps=25 format=3 uid="uid://cq7fp16k5koe4"]
+
+[ext_resource type="Script" uid="uid://butg6opt7uqy7" path="res://Scripts/Menu.gd" id="1_1rerr"]
+[ext_resource type="Script" uid="uid://bg6qwkon76wfm" path="res://Scripts/audio_control.gd" id="2_cayip"]
+[ext_resource type="Texture2D" uid="uid://dpc1opsy8tptg" path="res://Art Assets/images/Menu.png" id="2_rfqti"]
+[ext_resource type="AudioStream" uid="uid://boqdhc5y2iwyp" path="res://Art Assets/Sound Effects/vasilyatsevich-neural-ash-action-cyberpunk-synthwave-442409.mp3" id="2_xhh6f"]
+[ext_resource type="Texture2D" uid="uid://tupenymwnitv" path="res://Art Assets/images/FireSpreads.png" id="3_jsrd8"]
+[ext_resource type="PackedScene" uid="uid://c4cj8c0tbvyx8" path="res://Scenes/menus/pause_menu.tscn" id="4_158mb"]
+[ext_resource type="Texture2D" uid="uid://dp2lt2ps36ska" path="res://Art Assets/images/Burnout.png" id="4_wbdvm"]
+[ext_resource type="Texture2D" uid="uid://dq2xgy0ejp2y" path="res://Art Assets/images/Move.png" id="5_q3rjx"]
+[ext_resource type="Texture2D" uid="uid://b1y7q0vq875cf" path="res://Art Assets/images/Furniture.png" id="6_6swd7"]
+[ext_resource type="Texture2D" uid="uid://cbwkuttomfgs7" path="res://Art Assets/images/Explosion.png" id="7_7qvly"]
+[ext_resource type="Texture2D" uid="uid://cquvsix0pqrvk" path="res://Art Assets/images/Exploder.png" id="7_rfqti"]
+[ext_resource type="Texture2D" uid="uid://cp5n438ck4hh6" path="res://Art Assets/images/FireExstinguisher.png" id="9_g8i7c"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jsrd8"]
+texture = ExtResource("2_rfqti")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1rerr"]
+bg_color = Color(0.7411765, 0.7411765, 0.7411765, 0.49803922)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhh6f"]
+bg_color = Color(0.8474744, 0.84747446, 0.8474745, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cayip"]
+bg_color = Color(0.5649613, 0.5649618, 0.5649615, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_158mb"]
+
+[sub_resource type="FontFile" id="FontFile_wwsa2"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/60/0/ascent = 0.0
+cache/0/60/0/descent = 0.0
+cache/0/60/0/underline_position = 0.0
+cache/0/60/0/underline_thickness = 0.0
+cache/0/60/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/80/0/ascent = 0.0
+cache/0/80/0/descent = 0.0
+cache/0/80/0/underline_position = 0.0
+cache/0/80/0/underline_thickness = 0.0
+cache/0/80/0/scale = 1.0
+cache/0/100/0/ascent = 0.0
+cache/0/100/0/descent = 0.0
+cache/0/100/0/underline_position = 0.0
+cache/0/100/0/underline_thickness = 0.0
+cache/0/100/0/scale = 1.0
+cache/0/140/0/ascent = 0.0
+cache/0/140/0/descent = 0.0
+cache/0/140/0/underline_position = 0.0
+cache/0/140/0/underline_thickness = 0.0
+cache/0/140/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwsa2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfqti"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8i7c"]
+bg_color = Color(1, 0.5372549, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cayip"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_1rerr"]
+color = Color(1, 1, 1, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_xhh6f"]
+color = Color(0, 0, 0.70980394, 1)
+thickness = 6
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1rerr")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_jsrd8")
+
+[node name="Main_buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.5
+offset_top = -13.0
+offset_right = 175.5
+offset_bottom = 237.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Button" type="Button" parent="Main_buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.8299726, 0.5443584, 0.2712923, 1)
+theme_override_colors/font_focus_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1rerr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xhh6f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cayip")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_158mb")
+text = "Start Game"
+
+[node name="Button5" type="Button" parent="Main_buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.8299726, 0.5443584, 0.2712923, 1)
+theme_override_colors/font_focus_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1rerr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xhh6f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cayip")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_158mb")
+text = "How to Play"
+
+[node name="Button4" type="Button" parent="Main_buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_focus_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1rerr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xhh6f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cayip")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_158mb")
+text = "Controls"
+
+[node name="Button2" type="Button" parent="Main_buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_focus_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1rerr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xhh6f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cayip")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_158mb")
+text = "Options"
+
+[node name="Button3" type="Button" parent="Main_buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_focus_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1rerr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xhh6f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cayip")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_158mb")
+text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.052
+anchor_right = 0.5
+anchor_bottom = 0.052
+offset_left = -385.0
+offset_top = 73.304
+offset_right = 377.0
+offset_bottom = 261.30402
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontFile_wwsa2")
+theme_override_font_sizes/font_size = 140
+text = "Fire and Ash"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tutorial" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.098000005
+anchor_top = 0.094000004
+anchor_right = 0.92100006
+anchor_bottom = 0.878
+offset_left = 0.10399628
+offset_top = 0.08799744
+offset_right = 0.00793457
+offset_bottom = 0.05596924
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wwsa2")
+
+[node name="Start" type="TextureRect" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.039
+anchor_top = 0.045
+anchor_right = 0.22700001
+anchor_bottom = 0.25
+offset_left = 0.027999878
+offset_top = 0.13999939
+offset_right = -0.1960144
+texture = ExtResource("2_rfqti")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Tutorial/Start"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.16900001
+anchor_top = 1.0
+anchor_right = 1.156
+anchor_bottom = 1.45
+offset_left = 0.026002884
+offset_top = -1.0
+offset_right = -0.024002075
+offset_bottom = 0.049987793
+grow_horizontal = 2
+text = "This game is all about setting the world on fire!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spread" type="TextureRect" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.303
+anchor_top = 0.024
+anchor_right = 0.46500003
+anchor_bottom = 0.28100002
+offset_left = -0.24398804
+offset_top = -0.19200039
+offset_right = 0.17996216
+offset_bottom = 0.25198364
+texture = ExtResource("3_jsrd8")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Tutorial/Spread"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.16900001
+anchor_top = 1.0
+anchor_right = 1.156
+anchor_bottom = 1.45
+offset_left = 0.026002884
+offset_top = -1.0
+offset_right = -0.024002075
+offset_bottom = 0.049987793
+grow_horizontal = 2
+text = "Your fire will naturally spread."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Burnout" type="TextureRect" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.51900005
+anchor_top = 0.024
+anchor_right = 0.68100005
+anchor_bottom = 0.28100002
+offset_left = -0.012054443
+offset_top = -0.19200039
+offset_right = 0.41192627
+offset_bottom = 0.25198364
+texture = ExtResource("4_wbdvm")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Tutorial/Burnout"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.16900001
+anchor_top = 1.0
+anchor_right = 1.156
+anchor_bottom = 1.565
+offset_left = 0.026002884
+offset_top = -1.0
+offset_right = -0.024002075
+offset_bottom = -15.015015
+grow_horizontal = 2
+text = "However, it will quickly fade. If all your fire fades, you fade."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Move" type="TextureRect" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.74300003
+anchor_top = 0.024
+anchor_right = 0.90500003
+anchor_bottom = 0.28100002
+offset_left = -0.36401367
+offset_top = -0.19200039
+offset_right = 0.05999756
+offset_bottom = 0.25198364
+texture = ExtResource("5_q3rjx")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Tutorial/Move"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.16900001
+anchor_top = 1.0
+anchor_right = 1.156
+anchor_bottom = 1.565
+offset_left = 0.026002884
+offset_top = -1.0
+offset_right = -0.024002075
+offset_bottom = -15.015015
+grow_horizontal = 2
+text = "You must move through the world to spread your fire."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Furniture" type="TextureRect" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.051000003
+anchor_top = 0.441
+anchor_right = 0.21300001
+anchor_bottom = 0.69900006
+offset_left = -0.3480034
+offset_top = -0.027999878
+offset_right = 0.07598877
+offset_bottom = -0.092041016
+texture = ExtResource("6_6swd7")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Tutorial/Furniture"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.16900001
+anchor_top = 1.0
+anchor_right = 1.156
+anchor_bottom = 1.45
+offset_left = 0.026002884
+offset_top = -1.0
+offset_right = -0.024002075
+offset_bottom = 0.049987793
+grow_horizontal = 2
+text = "Consume objects and furniture to fuel your fire."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.254
+anchor_top = 0.656
+anchor_right = 0.469
+anchor_bottom = 0.85400003
+offset_left = 0.20800781
+offset_top = -0.24801636
+offset_right = 0.3880005
+offset_bottom = 0.16796875
+grow_horizontal = 2
+text = "Some objects explode when they're consumed, spreading your fire even more!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Exploder" type="TextureRect" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.28
+anchor_top = 0.42100003
+anchor_right = 0.38300002
+anchor_bottom = 0.57500005
+offset_left = -0.44000244
+offset_top = 0.13198853
+offset_right = -0.08401489
+offset_bottom = -0.10003662
+texture = ExtResource("7_rfqti")
+expand_mode = 1
+
+[node name="Explosion" type="TextureRect" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.344
+anchor_top = 0.476
+anchor_right = 0.44700003
+anchor_bottom = 0.63000005
+offset_left = -0.11199951
+offset_top = 0.19200134
+offset_right = 0.24398804
+offset_bottom = -0.040039063
+texture = ExtResource("7_7qvly")
+expand_mode = 1
+
+[node name="FireExtinguisher" type="TextureRect" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.512
+anchor_top = 0.441
+anchor_right = 0.674
+anchor_bottom = 0.69900006
+offset_left = -0.3760376
+offset_top = -0.027999878
+offset_right = 0.047973633
+offset_bottom = -0.092041016
+texture = ExtResource("9_g8i7c")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Tutorial/FireExtinguisher"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.16900001
+anchor_top = 1.0
+anchor_right = 1.156
+anchor_bottom = 1.565
+offset_left = 0.026002884
+offset_top = -1.0
+offset_right = -0.024002075
+offset_bottom = -15.015015
+grow_horizontal = 2
+text = "Watch out for fire exstinguishers. They put your fire."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HealthBar" type="ProgressBar" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75900006
+anchor_top = 0.69900006
+anchor_right = 0.92600006
+anchor_bottom = 0.77800006
+offset_left = 0.46795654
+offset_top = -0.092041016
+offset_right = 0.1519165
+offset_bottom = -0.22402954
+theme_override_styles/fill = SubResource("StyleBoxFlat_rfqti")
+max_value = 20.0
+value = 18.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Tutorial/HealthBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.291
+anchor_top = 1.0250001
+anchor_right = 1.3160001
+anchor_bottom = 2.25
+offset_left = -0.02199936
+offset_right = 0.07199097
+text = "The Red bar indicates your fire's health. Don't let it get to 0."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="FireTracker" type="ProgressBar" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75500005
+anchor_top = 0.46100003
+anchor_right = 0.92200005
+anchor_bottom = 0.53900003
+offset_left = 0.25994873
+offset_top = -0.1880188
+offset_right = -0.056030273
+offset_bottom = 0.18798828
+theme_override_styles/fill = SubResource("StyleBoxFlat_g8i7c")
+max_value = 20.0
+value = 7.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Tutorial/FireTracker"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.37300003
+anchor_top = 1.0250001
+anchor_right = 1.462
+anchor_bottom = 2.9
+offset_left = -0.06599426
+offset_right = 0.0039978027
+text = "The Orange bar indicates how much of the world has been burned. Burn it all!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button3" type="Button" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.37100002
+anchor_top = 0.864
+anchor_right = 0.62200004
+anchor_bottom = 0.98100007
+offset_left = 0.2919922
+offset_top = 0.08798218
+offset_right = 0.3439331
+offset_bottom = 0.15197754
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_focus_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1rerr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xhh6f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cayip")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_158mb")
+text = "Back"
+
+[node name="Options" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -241.0
+offset_top = -146.0
+offset_right = 235.0
+offset_bottom = 169.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_cayip")
+
+[node name="Label" type="Label" parent="Options"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.5
+offset_right = 476.0
+offset_bottom = 52.5
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button3" type="Button" parent="Options"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 226.0
+offset_right = 369.0
+offset_bottom = 285.5
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_focus_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1rerr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xhh6f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cayip")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_158mb")
+text = "Back"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.5
+offset_top = -40.5
+offset_right = 150.5
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Options/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "Music Volume "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Audio Control" type="HSlider" parent="Options/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_styles/slider = SubResource("StyleBoxLine_1rerr")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_xhh6f")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_xhh6f")
+max_value = 1.0
+step = 0.05
+value = 0.7
+script = ExtResource("2_cayip")
+audio_bus_name = "Music"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Options/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "SFX Volume     "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfx audio" type="HSlider" parent="Options/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_styles/slider = SubResource("StyleBoxLine_1rerr")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_xhh6f")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_xhh6f")
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource("2_cayip")
+audio_bus_name = "SFX"
+
+[node name="Control_view" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -241.0
+offset_top = -177.0
+offset_right = 307.0
+offset_bottom = 244.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_cayip")
+
+[node name="Label" type="Label" parent="Control_view"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -237.5
+offset_right = 237.5
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+text = "Controls"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button3" type="Button" parent="Control_view"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -119.0
+offset_top = -59.5
+offset_right = 119.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_focus_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1rerr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xhh6f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cayip")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_158mb")
+text = "Back"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control_view"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -65.5
+offset_right = 74.0
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control_view/VBoxContainer"]
+layout_mode = 2
+
+[node name="esc" type="Label" parent="Control_view/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "Quit Button  "
+
+[node name="Label3" type="Label" parent="Control_view/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "Esc"
+
+[node name="Foward control" type="HBoxContainer" parent="Control_view/VBoxContainer"]
+layout_mode = 2
+
+[node name="W" type="Label" parent="Control_view/VBoxContainer/Foward control"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "Foward          "
+
+[node name="Label3" type="Label" parent="Control_view/VBoxContainer/Foward control"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "W"
+
+[node name="Backwards" type="HBoxContainer" parent="Control_view/VBoxContainer"]
+layout_mode = 2
+
+[node name="s" type="Label" parent="Control_view/VBoxContainer/Backwards"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "Backward      "
+
+[node name="Label3" type="Label" parent="Control_view/VBoxContainer/Backwards"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "S"
+
+[node name="toleft" type="HBoxContainer" parent="Control_view/VBoxContainer"]
+layout_mode = 2
+
+[node name="a" type="Label" parent="Control_view/VBoxContainer/toleft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "Left                 "
+
+[node name="Label3" type="Label" parent="Control_view/VBoxContainer/toleft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "A"
+
+[node name="toright" type="HBoxContainer" parent="Control_view/VBoxContainer"]
+layout_mode = 2
+
+[node name="d" type="Label" parent="Control_view/VBoxContainer/toright"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "Right              "
+
+[node name="Label3" type="Label" parent="Control_view/VBoxContainer/toright"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "D"
+
+[node name="Sprint" type="HBoxContainer" parent="Control_view/VBoxContainer"]
+layout_mode = 2
+
+[node name="d" type="Label" parent="Control_view/VBoxContainer/Sprint"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "Sprint             "
+
+[node name="Label3" type="Label" parent="Control_view/VBoxContainer/Sprint"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "Shift"
+
+[node name="yes" type="HBoxContainer" parent="Control_view/VBoxContainer"]
+layout_mode = 2
+
+[node name="d" type="Label" parent="Control_view/VBoxContainer/yes"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "yes                  "
+
+[node name="Label3" type="Label" parent="Control_view/VBoxContainer/yes"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "Y"
+
+[node name="no" type="HBoxContainer" parent="Control_view/VBoxContainer"]
+layout_mode = 2
+
+[node name="d" type="Label" parent="Control_view/VBoxContainer/no"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "No                  "
+
+[node name="Label3" type="Label" parent="Control_view/VBoxContainer/no"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.54509807, 0.27058825, 1)
+theme_override_constants/outline_size = 4
+text = "N"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xhh6f")
+autoplay = true
+bus = &"Music"
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_158mb")]
+visible = false
+layout_mode = 1
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="pressed" from="Main_buttons/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Main_buttons/Button5" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Main_buttons/Button4" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Main_buttons/Button2" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Main_buttons/Button3" to="PauseMenu" method="appear"]
+[connection signal="pressed" from="Tutorial/Button3" to="." method="_on_onback_tutorial_pressed"]
+[connection signal="pressed" from="Options/Button3" to="." method="_on_onback_option_pressed"]
+[connection signal="value_changed" from="Options/VBoxContainer/HBoxContainer/Audio Control" to="Options/VBoxContainer/HBoxContainer/Audio Control" method="_on_value_changed"]
+[connection signal="value_changed" from="Options/VBoxContainer/HBoxContainer2/sfx audio" to="Options/VBoxContainer/HBoxContainer2/sfx audio" method="_on_value_changed"]
+[connection signal="pressed" from="Control_view/Button3" to="." method="_on_backcontrol_pressed"]

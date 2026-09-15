@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnp1w1h65blr7"]
+
+[ext_resource type="PackedScene" uid="uid://bwtbsjea85g8o" path="res://Art Assets/Scenes/wood_wall.tscn" id="1_lud0r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lud0r"]
+size = Vector3(1, 6.991699, 1)
+
+[node name="Wall" type="StaticBody3D"]
+collision_layer = 32
+collision_mask = 7
+
+[node name="woodWall" parent="." instance=ExtResource("1_lud0r")]
+transform = Transform3D(0.32, 0, 0, 0, 0.32, 0, 0, 0, 0.072, 0, 1.19, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9958496, 0)
+shape = SubResource("BoxShape3D_lud0r")

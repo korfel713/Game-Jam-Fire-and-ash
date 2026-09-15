@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://j7ir6cm7c7vn"]
+
+[ext_resource type="Script" uid="uid://b2ihcwkr0chgf" path="res://Scripts/Consumable.gd" id="1_m2jur"]
+[ext_resource type="PackedScene" path="res://Art Assets/Scenes/potted_plant.tscn" id="1_yk6wp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yk6wp"]
+size = Vector3(0.6897278, 1.4661255, 0.67697906)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m2jur"]
+size = Vector3(0.8128052, 1.7881927, 0.8324566)
+
+[node name="Plant" type="CharacterBody3D" groups=["Flammable"]]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_m2jur")
+fuel = 1.0
+fuel_con_rate = 0.2
+fuel_con_tick = 0.4
+height = 0.9
+
+[node name="pottedPlant" parent="." instance=ExtResource("1_yk6wp")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0019378662, 0.73306274, -0.0015830994)
+shape = SubResource("BoxShape3D_yk6wp")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42594, 0)
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0046081543, -0.64310455, -0.0066099167)
+shape = SubResource("BoxShape3D_m2jur")
+
+[connection signal="body_entered" from="Area3D" to="." method="touching_Fire"]
