@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://6xas1pr1ht21"]
+
+[ext_resource type="PackedScene" uid="uid://cforbmjgpwye1" path="res://Art Assets/Imports/ovenStove.fbx" id="1_1mjwo"]
+
+[node name="ovenStove" instance=ExtResource("1_1mjwo")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)

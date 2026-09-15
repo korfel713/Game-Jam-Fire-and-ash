@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3mbugkp7dr6y"]
+
+[ext_resource type="PackedScene" uid="uid://chlqkxj2e1k3y" path="res://Art Assets/Imports/player.fbx" id="1_g0ind"]
+[ext_resource type="PackedScene" uid="uid://dp2ntripnpivn" path="res://Art Assets/Scenes/player_eyes.tscn" id="2_u5ytu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0ind"]
+albedo_color = Color(0.99582213, 0.26410863, 1.92523e-07, 1)
+emission_enabled = true
+emission = Color(0.94509804, 0.47058824, 0, 1)
+emission_energy_multiplier = 1.14
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_32gau"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 9.8, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_brkia"]
+albedo_color = Color(0.99607843, 0.2627451, 0, 1)
+emission_enabled = true
+emission = Color(0.94509804, 0.47058824, 0, 1)
+emission_energy_multiplier = 2.31
+
+[sub_resource type="BoxMesh" id="BoxMesh_a3fp8"]
+material = SubResource("StandardMaterial3D_brkia")
+size = Vector3(0.07, 0.245, 0.07)
+
+[node name="player" instance=ExtResource("1_g0ind")]
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(35, 0, 0, 0, -1.5298986e-06, 35, 0, -35, -1.5298986e-06, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_g0ind")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="1"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+randomness = 0.03
+process_material = SubResource("ParticleProcessMaterial_32gau")
+draw_pass_1 = SubResource("BoxMesh_a3fp8")
+
+[node name="playerEyes" parent="." index="2" instance=ExtResource("2_u5ytu")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.007917881, 0, 0.40698707)

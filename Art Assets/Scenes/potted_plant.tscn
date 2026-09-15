@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://00uqsko2tn3c"]
+
+[ext_resource type="PackedScene" uid="uid://df6jq6tc5l20" path="res://Art Assets/Imports/pottedPlant.fbx" id="1_go0u2"]
+
+[node name="pottedPlant" instance=ExtResource("1_go0u2")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)

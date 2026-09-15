@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://caxp72jtww1bx"]
+
+[ext_resource type="PackedScene" uid="uid://b3mx0x3s26o47" path="res://Art Assets/Imports/TV.fbx" id="1_axf1v"]
+
+[node name="TV" instance=ExtResource("1_axf1v")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)

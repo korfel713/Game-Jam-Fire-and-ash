@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci7px5lxyafn1"]
+
+[ext_resource type="PackedScene" uid="uid://ceexkkupj1nf7" path="res://Art Assets/Imports/microwave.fbx" id="1_dmgse"]
+
+[node name="microwave" instance=ExtResource("1_dmgse")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
